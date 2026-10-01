@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض مشاريع دورة التسويق الإلكتروني 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2b574a;
+            --secondary-color: #d4af37;
+            --bg-light: #f4f7f6;
+            --text-dark: #2c3e50;
+            --white: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+        header { background: linear-gradient(135deg, var(--primary-color) 0%, #1e3d34 100%); color: var(--white); padding: 50px 20px; text-align: center; border-bottom: 5px solid var(--secondary-color); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .header-container h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; }
+        .header-container h2 { font-size: 1.4rem; font-weight: 400; color: var(--secondary-color); margin-bottom: 20px; }
+        .info-bar { display: inline-flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 15px; font-size: 1rem; background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 30px; }
+        .info-bar span strong { color: var(--secondary-color); }
+        .intro-section { max-width: 1200px; margin: 40px auto; padding: 0 20px; text-align: center; }
+        .intro-section p { font-size: 1.1rem; color: #555; max-width: 800px; margin: 0 auto; }
+        .projects-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; align-items: start; }
+        .project-card { background-color: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; border-top: 4px solid var(--primary-color); }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.12); }
+        .project-media-placeholder { background-color: #eaeaea; padding: 15px; color: #777; }
+        .media-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+        .media-item { min-width: 0; background: #f9f9f9; border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+        .media-item img, .media-item video { display: block; width: 100%; height: 150px; object-fit: contain; background: #f2f2f2; }
+        .media-item figcaption { padding: 4px 6px; text-align: center; color: #777; font-size: .72rem; background: #fff; }
+        .project-content { padding: 20px; }
+        .project-title { font-size: 1.3rem; font-weight: 600; color: var(--primary-color); margin-bottom: 10px; }
+        .project-desc { font-size: .95rem; color: #666; margin-bottom: 15px; min-height: 65px; }
+        .project-meta { display: flex; justify-content: space-between; align-items: center; font-size: .85rem; border-top: 1px solid #eee; padding-top: 12px; color: #888; }
+        .media-badge { background-color: #e8f0ec; color: var(--primary-color); padding: 3px 10px; border-radius: 15px; font-weight: 600; }
+        .campaign-section { margin-top: 18px; padding-top: 15px; border-top: 1px solid #eee; }
+        .campaign-section h4 { color: var(--primary-color); font-size: 1rem; margin-bottom: 5px; }
+        .campaign-section p { color: #666; font-size: .85rem; margin-bottom: 10px; }
+        .campaign-links { display: grid; gap: 7px; }
+        .campaign-link, .folder-link { display: block; color: var(--primary-color); text-decoration: none; font-size: .82rem; padding: 7px 10px; border-radius: 6px; background: #f4f7f6; border-right: 3px solid var(--secondary-color); }
+        .campaign-link:hover, .folder-link:hover { background: #e8f0ec; color: #1e3d34; }
+        .folder-link { margin-top: 8px; background: transparent; border: 1px solid #e5e5e5; text-align: center; }
+        footer { background-color: #1e3d34; color: var(--white); text-align: center; padding: 25px 20px; margin-top: 60px; font-size: .9rem; border-top: 3px solid var(--secondary-color); }
+        footer p a { color: var(--secondary-color); text-decoration: none; }
+        @media (max-width: 520px) { .media-grid { grid-template-columns: 1fr; } .media-item img, .media-item video { height: 190px; } .header-container h1 { font-size: 1.8rem; } .header-container h2 { font-size: 1.15rem; } }
+
+        /* حركات الظهور والتفاعل البصري */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes headerReveal { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: translateY(0); } }
+        .header-container { animation: headerReveal .8s ease both; }
+        .intro-section { animation: fadeUp .8s .15s ease both; }
+        .project-card { opacity: 0; transform: translateY(28px); transition: transform .35s ease, box-shadow .35s ease, opacity .6s ease; }
+        .project-card.is-visible { opacity: 1; transform: translateY(0); }
+        .project-card.is-visible:hover { transform: translateY(-7px); }
+        .media-item { position: relative; isolation: isolate; transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+        .media-item::before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,.28) 50%, transparent 75%); transform: translateX(120%); transition: transform .65s ease; }
+        .media-item:hover { transform: translateY(-4px) scale(1.02); border-color: var(--secondary-color); box-shadow: 0 9px 18px rgba(43,87,74,.18); }
+        .media-item:hover::before { transform: translateX(-120%); }
+        .media-item img, .media-item video { transition: transform .5s ease, filter .35s ease; }
+        .media-item:hover img, .media-item:hover video { transform: scale(1.06); filter: saturate(1.08); }
+        .media-item img { cursor: zoom-in; }
+        .media-item figcaption { position: relative; z-index: 2; }
+        .media-open { position: absolute; z-index: 3; top: 8px; left: 8px; border: 0; border-radius: 50%; width: 32px; height: 32px; color: var(--white); background: rgba(30,61,52,.82); cursor: pointer; opacity: 0; transform: scale(.8); transition: opacity .25s ease, transform .25s ease, background .25s ease; font-size: 1rem; line-height: 1; }
+        .media-item:hover .media-open, .media-open:focus-visible { opacity: 1; transform: scale(1); }
+        .media-open:hover { background: var(--primary-color); }
+        .campaign-link, .folder-link { transition: transform .25s ease, background .25s ease, padding-right .25s ease; }
+        .campaign-link:hover, .folder-link:hover { transform: translateX(-4px); padding-right: 14px; }
+        .lightbox { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 24px; background: rgba(15,28,24,.88); opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s ease; }
+        .lightbox.is-open { opacity: 1; visibility: visible; }
+        .lightbox-panel { position: relative; width: min(100%, 1000px); max-height: 92vh; display: flex; flex-direction: column; align-items: center; gap: 10px; animation: lightboxIn .35s ease both; }
+        @keyframes lightboxIn { from { opacity: 0; transform: scale(.94) translateY(12px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .lightbox-media { max-width: 100%; max-height: 78vh; object-fit: contain; border-radius: 10px; background: #101715; box-shadow: 0 12px 40px rgba(0,0,0,.35); }
+        .lightbox-caption { color: var(--white); text-align: center; font-size: .9rem; }
+        .lightbox-close, .lightbox-nav { position: absolute; z-index: 2; border: 0; color: var(--white); background: rgba(255,255,255,.16); cursor: pointer; transition: background .2s ease, transform .2s ease; }
+        .lightbox-close { top: -12px; left: -12px; width: 38px; height: 38px; border-radius: 50%; font-size: 1.4rem; }
+        .lightbox-nav { top: 50%; transform: translateY(-50%); width: 42px; height: 54px; border-radius: 8px; font-size: 1.7rem; }
+        .lightbox-nav.prev { right: -58px; }
+        .lightbox-nav.next { left: -58px; }
+        .lightbox-close:hover, .lightbox-nav:hover { background: var(--primary-color); }
+        body.lightbox-open { overflow: hidden; }
+        @media (max-width: 700px) { .lightbox { padding: 14px; } .lightbox-nav { top: auto; bottom: -58px; transform: none; width: 46px; height: 42px; } .lightbox-nav.prev { right: 52%; } .lightbox-nav.next { left: 52%; } .lightbox-close { top: -48px; left: 0; } .media-open { opacity: 1; transform: scale(1); } }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } .project-card { opacity: 1; transform: none; } }
+    </style>
+</head>
+<body>
+<header><div class="header-container"><h2>مخرجات دورة التسويق الإلكتروني - المشروع السياحي 2026</h2><h1>معرض مشاريع الطلاب الإبداعية</h1><div class="info-bar"><span>المكان: <strong>معهد تدريب مهني المفرق</strong></span><span>تحت إشراف مدربة الحاسوب: <strong>م. عندليب الشديفات</strong></span></div></div></header>
+<section class="intro-section"><p>نستعرض لكم في هذه الصفحة نتاج جهود طلابنا المتميزين في تطوير الخطط والمشاريع التسويقية المبتكرة، مدمجة بالوسائط المرئية من صور وفيديوهات، مع نماذج تطبيقية للحملات الإعلانية التي نفذها الطلاب باستخدام أدوات الذكاء الاصطناعي المجانية.</p></section>
+<main class="projects-container"><article class="project-card">
+    <div class="project-media-placeholder">
+        <div class="media-grid"><figure class="media-item"><img src="project-assets/nissan/media-1.jpg" alt="مشروع لمسات نيسان - WhatsApp Image 2026-09-21 at 11.05.46 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/nissan/media-2.jpg" alt="مشروع لمسات نيسان - WhatsApp Image 2026-09-22 at 10.37.36 AM (1).jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/nissan/media-3.jpg" alt="مشروع لمسات نيسان - WhatsApp Image 2026-09-22 at 10.37.36 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/nissan/media-4.jpg" alt="مشروع لمسات نيسان - WhatsApp Image 2026-09-22 at 10.37.37 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/nissan/media-5.jpg" alt="مشروع لمسات نيسان - WhatsApp Image 2026-09-22 at 10.54.31 AM (1).jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/nissan/media-6.jpg" alt="مشروع لمسات نيسان - WhatsApp Image 2026-09-22 at 10.54.31 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><video controls preload="metadata" playsinline aria-label="مشروع لمسات نيسان - WhatsApp Video 2026-09-24 at 9.27.12 AM.mp4"><source src="project-assets/nissan/media-7.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><figcaption>فيديو من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><video controls preload="metadata" playsinline aria-label="مشروع لمسات نيسان - WhatsApp Video 2026-09-24 at 9.47.15 AM.mp4"><source src="project-assets/nissan/media-8.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><figcaption>فيديو من أعمال المشروع</figcaption></figure></div>
+    </div>
+    <div class="project-content">
+        <h3 class="project-title">مشروع لمسات نيسان</h3>
+        <p class="project-desc">مشروع تسويقي متكامل يبرز اللمسات الجمالية والخدمات السياحية أو التجارية المبتكرة المقدمة للجمهور.</p>
+        <div class="project-meta"><span class="media-badge">6 صور + 2 فيديو</span><span>دورة 2026</span></div>
+        <section class="campaign-section" aria-label="الحملة الإعلانية للمشروع">
+            <h4>التطبيق العملي: الحملة الإعلانية التسويقية</h4>
+            <p>ملفات الحملة التي أعدّها الطلاب باستخدام أدوات الذكاء الاصطناعي المجانية:</p>
+            <div class="campaign-links"><a class="campaign-link" href="https://drive.google.com/file/d/1v4E8tLSSlPgPeVpPoMeQSRclkldfHBn5/view?usp=drivesdk" target="_blank" rel="noopener">عرض ملف الحملة: الحملة الاعلانية لمسات نيسان 2.pdf</a>
+<a class="campaign-link" href="https://drive.google.com/file/d/1bIr6nLb-Px1GR_MSga8mhLdMnH21VFrW/view?usp=drivesdk" target="_blank" rel="noopener">عرض ملف الحملة: الحملة الاعلانية لمسات نيسان.pdf</a></div>
+        </section>
+    </div>
+</article><article class="project-card">
+    <div class="project-media-placeholder">
+        <div class="media-grid"><figure class="media-item"><img src="project-assets/umm-al-jimal/media-1.jpg" alt="مشروع أم الجمال - WhatsApp Image 2026-09-22 at 10.42.34 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/umm-al-jimal/media-2.jpg" alt="مشروع أم الجمال - WhatsApp Image 2026-09-22 at 9.04.34 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/umm-al-jimal/media-3.jpg" alt="مشروع أم الجمال - WhatsApp Image 2026-09-23 at 10.04.09 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/umm-al-jimal/media-4.jpg" alt="مشروع أم الجمال - WhatsApp Image 2026-09-23 at 9.02.11 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/umm-al-jimal/media-5.jpg" alt="مشروع أم الجمال - WhatsApp Image 2026-09-23 at 9.16.41 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/umm-al-jimal/media-6.jpg" alt="مشروع أم الجمال - WhatsApp Image 2026-09-23 at 9.38.32 AM (1).jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><video controls preload="metadata" playsinline aria-label="مشروع أم الجمال - WhatsApp Video 2026-09-23 at 11.07.54 AM.mp4"><source src="project-assets/umm-al-jimal/media-7.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><figcaption>فيديو من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><video controls preload="metadata" playsinline aria-label="مشروع أم الجمال - WhatsApp Video 2026-09-24 at 10.44.38 AM.mp4"><source src="project-assets/umm-al-jimal/media-8.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><figcaption>فيديو من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><video controls preload="metadata" playsinline aria-label="مشروع أم الجمال - الفيديو الختامي للطلاب"><source src="project-assets/umm-al-jimal/final-video.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><figcaption>الفيديو الختامي للطلاب</figcaption></figure></div>
+    </div>
+    <div class="project-content">
+        <h3 class="project-title">مشروع أم الجمال</h3>
+        <p class="project-desc">حملة تسويق سياحي متخصصة لتسليط الضوء على مدينة أم الجمال الأثرية العريقة وجذب الزوار إليها.</p>
+        <div class="project-meta"><span class="media-badge">6 صور + 3 فيديو</span><span>دورة 2026</span></div>
+        <section class="campaign-section" aria-label="الحملة الإعلانية للمشروع">
+            <h4>التطبيق العملي: الحملة الإعلانية التسويقية</h4>
+            <p>ملفات الحملة التي أعدّها الطلاب باستخدام أدوات الذكاء الاصطناعي المجانية:</p>
+            <div class="campaign-links"><a class="campaign-link" href="https://drive.google.com/file/d/1g9UBpV_x1su2HCCg87Z80jiod07aVirZ/view?usp=drivesdk" target="_blank" rel="noopener">عرض ملف الحملة: الحملة الإعلانية مشروع ام الجمال تستحق الزيارة فيسبوك+انستغرام.pdf</a></div>
+        </section>
+    </div>
+</article><article class="project-card">
+    <div class="project-media-placeholder">
+        <div class="media-grid"><figure class="media-item"><img src="project-assets/spicy-burger/media-1.jpg" alt="مشروع Spicy Burger - WhatsApp Image 2026-09-22 at 9.04.34 AM (1).jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/spicy-burger/media-2.jpg" alt="مشروع Spicy Burger - WhatsApp Image 2026-09-23 at 9.04.21 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/spicy-burger/media-3.jpg" alt="مشروع Spicy Burger - WhatsApp Image 2026-09-23 at 9.12.32 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/spicy-burger/media-4.jpg" alt="مشروع Spicy Burger - WhatsApp Image 2026-09-24 at 9.14.44 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/spicy-burger/media-5.jpg" alt="مشروع Spicy Burger - WhatsApp Image 2026-09-24 at 9.14.59 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/spicy-burger/media-6.jpg" alt="مشروع Spicy Burger - WhatsApp Image 2026-09-24 at 9.15.53 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><video controls preload="metadata" playsinline aria-label="مشروع Spicy Burger - WhatsApp Video 2026-09-24 at 10.01.02 AM (1).mp4"><source src="project-assets/spicy-burger/media-7.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><figcaption>فيديو من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><video controls preload="metadata" playsinline aria-label="مشروع Spicy Burger - WhatsApp Video 2026-09-24 at 10.01.02 AM.mp4"><source src="project-assets/spicy-burger/media-8.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><figcaption>فيديو من أعمال المشروع</figcaption></figure></div>
+    </div>
+    <div class="project-content">
+        <h3 class="project-title">مشروع Spicy Burger</h3>
+        <p class="project-desc">خطة تسويق إلكتروني مبتكرة لعلامة تجارية في قطاع الأغذية تدمج بين الترويج السياحي والوجبات السريعة المحلية.</p>
+        <div class="project-meta"><span class="media-badge">6 صور + 2 فيديو</span><span>دورة 2026</span></div>
+        <section class="campaign-section" aria-label="الحملة الإعلانية للمشروع">
+            <h4>التطبيق العملي: الحملة الإعلانية التسويقية</h4>
+            <p>ملفات الحملة التي أعدّها الطلاب باستخدام أدوات الذكاء الاصطناعي المجانية:</p>
+            <div class="campaign-links"><a class="campaign-link" href="https://drive.google.com/file/d/1_9qQXv0UkTpySZWrJqV3FHZ9rAoQ10fK/view?usp=drivesdk" target="_blank" rel="noopener">عرض ملف الحملة: الحملة الاعلانية ل spicy burger.pdf</a></div>
+        </section>
+    </div>
+</article><article class="project-card">
+    <div class="project-media-placeholder">
+        <div class="media-grid"><figure class="media-item"><img src="project-assets/diva-cafe/media-1.jpg" alt="مشروع Diva Cafe - WhatsApp Image 2026-09-22 at 11.09.26 AM (1).jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/diva-cafe/media-2.jpg" alt="مشروع Diva Cafe - WhatsApp Image 2026-09-22 at 11.09.26 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/diva-cafe/media-3.jpg" alt="مشروع Diva Cafe - WhatsApp Image 2026-09-22 at 11.09.27 AM (1).jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/diva-cafe/media-4.jpg" alt="مشروع Diva Cafe - WhatsApp Image 2026-09-22 at 11.09.27 AM (2).jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/diva-cafe/media-5.jpg" alt="مشروع Diva Cafe - WhatsApp Image 2026-09-22 at 11.09.27 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><img src="project-assets/diva-cafe/media-6.jpg" alt="مشروع Diva Cafe - WhatsApp Image 2026-09-22 at 8.37.12 AM.jpeg" loading="lazy"><figcaption>صورة من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><video controls preload="metadata" playsinline aria-label="مشروع Diva Cafe - WhatsApp Video 2026-09-23 at 10.39.59 AM.mp4"><source src="project-assets/diva-cafe/media-7.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><figcaption>فيديو من أعمال المشروع</figcaption></figure>
+<figure class="media-item"><video controls preload="metadata" playsinline aria-label="مشروع Diva Cafe - WhatsApp Video 2026-09-24 at 10.36.19 AM.mp4"><source src="project-assets/diva-cafe/media-8.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><figcaption>فيديو من أعمال المشروع</figcaption></figure></div>
+    </div>
+    <div class="project-content">
+        <h3 class="project-title">مشروع Diva Cafe</h3>
+        <p class="project-desc">إستراتيجية تسويقية رقمية متميزة تبرز أجواء وتجربة مقهى ديفا كوجهة سياحية ترفيهية جاذبة.</p>
+        <div class="project-meta"><span class="media-badge">6 صور + 2 فيديو</span><span>دورة 2026</span></div>
+        <section class="campaign-section" aria-label="الحملة الإعلانية للمشروع">
+            <h4>التطبيق العملي: الحملة الإعلانية التسويقية</h4>
+            <p>ملفات الحملة التي أعدّها الطلاب باستخدام أدوات الذكاء الاصطناعي المجانية:</p>
+            <div class="campaign-links"><a class="campaign-link" href="https://drive.google.com/file/d/1GfcjRqMMZ6YtQ9LGIpLGMZ_Spact_tKM/view?usp=drivesdk" target="_blank" rel="noopener">عرض ملف الحملة: ترويج ديفا انستجرام.pdf</a>
+<a class="campaign-link" href="https://drive.google.com/file/d/17MWwpGSKDbgozBG3gZtMYdPNaDeeLgRn/view?usp=drivesdk" target="_blank" rel="noopener">عرض ملف الحملة: عمل حملة اعلانية تسويقية pdf Diva coffee.pdf</a></div>
+        </section>
+    </div>
+</article></main>
+<footer><p>جميع الحقوق محفوظة © دورة التسويق الإلكتروني | معهد تدريب مهني المفرق 2026</p><p style="margin-top:5px;font-size:.8rem;color:#aaa;">تحت إشراف المهندسة عندليب الشديفات</p></footer>
+
+<div class="lightbox" id="mediaLightbox" role="dialog" aria-modal="true" aria-label="عارض أعمال الطلاب">
+    <div class="lightbox-panel">
+        <button class="lightbox-close" type="button" aria-label="إغلاق العارض">×</button>
+        <button class="lightbox-nav prev" type="button" aria-label="الوسيط السابق">›</button>
+        <div id="lightboxStage"></div>
+        <p class="lightbox-caption" id="lightboxCaption"></p>
+        <button class="lightbox-nav next" type="button" aria-label="الوسيط التالي">‹</button>
+    </div>
+</div>
+
+<script>
+(() => {
+    const cards = [...document.querySelectorAll('.project-card')];
+    const mediaItems = [...document.querySelectorAll('.media-item')];
+    const lightbox = document.getElementById('mediaLightbox');
+    const stage = document.getElementById('lightboxStage');
+    const caption = document.getElementById('lightboxCaption');
+    let activeIndex = 0;
+    let lastFocused = null;
+
+    // ظهور البطاقات تدريجيًا عند التمرير مع تأخير بسيط بين البطاقات.
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.transitionDelay = `${cards.indexOf(entry.target) * 90}ms`;
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    cards.forEach(card => observer.observe(card));
+
+    // زر تكبير مستقل لكل صورة وفيديو حتى تبقى عناصر التحكم بالفيديو سهلة الاستخدام.
+    mediaItems.forEach((item, index) => {
+        const openButton = document.createElement('button');
+        openButton.type = 'button';
+        openButton.className = 'media-open';
+        openButton.setAttribute('aria-label', 'فتح الوسيط بحجم كبير');
+        openButton.textContent = item.querySelector('video') ? '▶' : '⌕';
+        openButton.addEventListener('click', () => openLightbox(index, openButton));
+        item.appendChild(openButton);
+        const image = item.querySelector('img');
+        if (image) image.addEventListener('click', () => openLightbox(index, image));
+    });
+
+    function openLightbox(index, focusTarget) {
+        activeIndex = index;
+        lastFocused = focusTarget;
+        renderMedia();
+        lightbox.classList.add('is-open');
+        document.body.classList.add('lightbox-open');
+        lightbox.querySelector('.lightbox-close').focus();
+    }
+    function renderMedia() {
+        const item = mediaItems[activeIndex];
+        const source = item.querySelector('img, video');
+        stage.replaceChildren();
+        let media;
+        if (source.tagName.toLowerCase() === 'video') {
+            media = document.createElement('video');
+            media.controls = true;
+            media.autoplay = true;
+            media.playsInline = true;
+            media.preload = 'metadata';
+            media.src = source.querySelector('source')?.src || source.currentSrc;
+        } else {
+            media = document.createElement('img');
+            media.src = source.currentSrc || source.src;
+            media.alt = source.alt;
+        }
+        media.className = 'lightbox-media';
+        stage.appendChild(media);
+        caption.textContent = item.querySelector('figcaption')?.textContent || '';
+    }
+    function closeLightbox() {
+        const activeVideo = stage.querySelector('video');
+        if (activeVideo) activeVideo.pause();
+        lightbox.classList.remove('is-open');
+        document.body.classList.remove('lightbox-open');
+        stage.replaceChildren();
+        if (lastFocused) lastFocused.focus();
+    }
+    function move(step) {
+        activeIndex = (activeIndex + step + mediaItems.length) % mediaItems.length;
+        renderMedia();
+    }
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.prev').addEventListener('click', () => move(1));
+    lightbox.querySelector('.next').addEventListener('click', () => move(-1));
+    lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', event => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (event.key === 'Escape') closeLightbox();
+        if (event.key === 'ArrowRight') move(1);
+        if (event.key === 'ArrowLeft') move(-1);
+    });
+})();
+</script>
+</body></html>
